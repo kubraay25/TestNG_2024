@@ -1,0 +1,52 @@
+
+
+
+
+................... BeforeGroups_AfterGroups ...................
+
+
+Diyelimki testlerimin yarıısnı "chrome"da yarısını "edge"de koşacağım
+Tanımladığım Driver aracılığı ile gruplandırma yapabilirim
+Yani chrome deriveri tanımlayıp ya da artık hangi bowser larda çalışmasını isityorsam o şekilde ayarlayabilirim
+
+
+
+
+
+
+
+..................................... örneğin .....................
+
+public class C02_BeforeGroup_AfterGroup {
+
+    WebDriver driver;
+
+    @BeforeGroups("chrome")
+    public void chromeSetUp(){
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
+
+    @BeforeGroups("firefox")
+        public void chromeSetUp(){
+            driver = new FireFoxDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        }
+
+    @Test(groups = "firefox")
+    public void test01(){
+        driver.get("https://amazon.com");
+    }
+
+    @Test(groups = "chrome")
+    public void test02(){
+        driver.get("https://google.com");
+    }
+
+    @Test(groups = "chrome")
+    public void test03(){
+        driver.get("https://facebook.com");
+    }
+}

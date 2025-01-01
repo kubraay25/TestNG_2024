@@ -1,0 +1,9 @@
+
+
+
+................. kapatma
+
+ @AfterGroups("chrome")
+    public void tearDown() {
+        driver.quit();
+    }
