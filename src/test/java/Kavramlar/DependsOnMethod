@@ -1,0 +1,50 @@
+
+
+
+.................... DependsOn Methods .............................
+
+
+SADECE İKİ METOT İLE YAPABİLİYORUZ
+
+TestNG'de @Test(dependsOnMethods) bir test metodunun başka bir test metoduna bağımlı olduğunu belirtmek için kullanılır.
+Bu özellik, bir testin başka bir testin başarıyla tamamlanmasından sonra çalıştırılmasını sağlar.
+
+
+
+
+
+.................... Kullanışı ........................................
+
+Kullanımı:
+dependsOnMethods özelliği, bağımlılık kurmak için diğer test metodunun adını belirtir.
+Eğer bağımlı olunan test metodu başarısız olursa, bağımlı olan test metodu çalıştırılmaz.
+
+Örnek:
+import org.testng.annotations.Test;
+
+public class TestNGExample {
+
+    @Test
+    public void login() {
+        System.out.println("Login işlemi başarılı.");
+        // Burada bir hata olmadığı sürece diğer testler çalışır.
+    }
+
+    @Test(dependsOnMethods = {"login"})
+    public void performAction() {
+        System.out.println("Login sonrası aksiyon alınıyor.");
+    }
+
+    @Test(dependsOnMethods = {"login", "performAction"})
+    public void logout() {
+        System.out.println("Logout işlemi başarılı.");
+    }
+}
+Çıktı:
+css
+Copy code
+Login işlemi başarılı.
+Login sonrası aksiyon alınıyor.
+Logout işlemi başarılı.
+Eğer login() metodu başarısız olursa, performAction() ve logout() metotları çalıştırılmaz.
+
