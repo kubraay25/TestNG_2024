@@ -1,0 +1,53 @@
+
+
+
+.................. Natural Order ........................
+
+Eğer "natural order" kastediliyorsa, Java'da "doğal sıralama" anlamına gelir.
+TestNG'de test metotlarının sırasıyla ilgili şu durumlar olabilir:
+
+1.TestNG'de testler varsayılan olarak metotların alfabetik sırasına göre çalıştırılır (eğer farklı bir sıralama belirtilmemişse).
+Buna doğal sıralama denebilir.
+
+2.Sıralamayı kontrol etmek için priority veya dependsOnMethods gibi özellikler kullanılabilir.
+
+
+
+................ Ornek Gosterim ...........................
+
+import org.testng.annotations.Test;
+
+public class TestNGExample {
+    @Test(priority = 1)
+    public void test1() {
+        System.out.println("Test 1 çalıştırılıyor.");
+    }
+
+    @Test(priority = 2)
+    public void test2() {
+        System.out.println("Test 2 çalıştırılıyor.");
+    }
+}
+
+
+
+..............................................................
+
+b. DependsOnMethods (Bağımlı Testler)
+java
+Copy code
+import org.testng.annotations.Test;
+
+public class TestNGExample {
+    @Test
+    public void loginTest() {
+        System.out.println("Login testi çalıştırılıyor.");
+    }
+
+    @Test(dependsOnMethods = "loginTest")
+    public void dashboardTest() {
+        System.out.println("Dashboard testi çalıştırılıyor.");
+    }
+}
+Sonuç: dashboardTest, loginTest başarılı bir şekilde tamamlandıktan sonra çalıştırılır.
+

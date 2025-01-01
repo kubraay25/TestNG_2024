@@ -1,0 +1,61 @@
+
+
+...................... Ignore ............................................
+
+
+TestNG'de "ignore" (yok sayma) bir test metodunun veya sınıfının çalıştırılmamasını sağlamak için kullanılır.
+Bu, genellikle bir testi geçici olarak devre dışı bırakmak istediğinizde işinize yarar.
+
+
+
+
+TestNG'de "ignore" (yok sayma) bir test metodunun veya sınıfının çalıştırılmamasını sağlamak için kullanılır.
+Bu, genellikle bir testi geçici olarak devre dışı bırakmak istediğinizde işinize yarar.
+
+
+
+
+
+
+..................... TestNG'de Ignore Kullanımı ............................
+
+1. @Test(enabled = false)
+
+Bir test metodunu devre dışı bırakmak için enabled özelliğini kullanabilirsiniz.
+Varsayılan olarak, enabled değeri true'dur. Eğer false yaparsanız, test çalıştırılmaz.
+
+örneğin
+import org.testng.annotations.Test;
+
+public class TestNGExample {
+    @Test(enabled = true)
+    public void test1() {
+        System.out.println("Test 1 çalıştırılıyor.");
+    }
+
+    @Test(enabled = false)
+    public void test2() {
+        System.out.println("Test 2 çalıştırılmayacak.");
+    }
+}
+
+
+Çıktı:
+
+Copy code
+Test 1 çalıştırılıyor.
+test2 metodu yok sayılır ve çalıştırılmaz.
+
+
+
+
+
+
+
+
+
+2. @Ignore (JUnit'e Özgü)
+
+TestNG ile JUnit kütüphanesini birlikte kullanıyorsanız, JUnit'in @Ignore anotasyonu da testleri devre dışı
+bırakmak için kullanılabilir. Ancak bu TestNG'nin kendi özelliği değildir.
+
